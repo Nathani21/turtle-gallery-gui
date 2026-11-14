@@ -20,6 +20,7 @@ A small Python desktop app that shows a gallery of turtle graphics creations. Pi
 | Chromatic Spiral | 200 overlapping circles in six colours, each turned 59 degrees from the last |
 | Spectrum Rosette | 36 circles that step through the colour wheel, each turned 10 degrees |
 | Spectrum Tree | A recursive fractal tree whose branches shift through the colour wheel, from trunk to tips |
+| Spectrum Snowflake | A Koch snowflake, four levels deep, with its outline shifting through the colour wheel |
 
 ## Download
 
