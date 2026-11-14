@@ -13,6 +13,9 @@ class GalleryApp(tk.Tk):
         self.geometry("1000x700")
         self.minsize(700, 500)
         self.tiles = {}
+        self._steps = None
+        self._step_ms = 0
+        self._job = None
         self._build_tiles()
         self._build_canvas()
 
@@ -57,6 +60,7 @@ class GalleryApp(tk.Tk):
         )
 
     def show(self, name):
+        self._stop()
         creation = CREATIONS[name]
         for tile_name, tile in self.tiles.items():
             tile.config(relief="sunken" if tile_name == name else "raised")
@@ -65,8 +69,28 @@ class GalleryApp(tk.Tk):
         self._fit_view(creation.EXTENT)
         pen = turtle.RawTurtle(self.screen)
         pen.hideturtle()
-        creation.draw(pen)
+        self._steps = creation.draw(pen)
+        self._step_ms = creation.STEP_MS
+        self._advance()
+
+    def _advance(self):
+        """Draw one step, then schedule the next one."""
+        try:
+            next(self._steps)
+        except StopIteration:
+            self._job = None
+            return
         self.screen.update()
+        self._job = self.after(self._step_ms, self._advance)
+
+    def _stop(self):
+        """Cancel the drawing in progress, if any."""
+        if self._job is not None:
+            self.after_cancel(self._job)
+            self._job = None
+        if self._steps is not None:
+            self._steps.close()
+            self._steps = None
 
 
 def main():

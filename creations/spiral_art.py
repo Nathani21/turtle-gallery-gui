@@ -1,5 +1,6 @@
 COLORS = ["red", "yellow", "blue", "green", "purple", "orange"]
 EXTENT = 400  # the drawing stays within this distance of the centre
+STEP_MS = 20  # pause between steps when the gallery animates it
 
 
 def draw(t):
@@ -9,9 +10,11 @@ def draw(t):
         t.color(COLORS[i % len(COLORS)])
         t.circle(i)
         t.left(59)
+        yield
 
 
 if __name__ == "__main__":
     import turtle
-    draw(turtle.Turtle())
+    for _ in draw(turtle.Turtle()):
+        pass
     turtle.done()
