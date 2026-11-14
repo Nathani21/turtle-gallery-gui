@@ -9,7 +9,7 @@ FIT_MARGIN = 1.05  # leave a little empty space around each drawing
 class GalleryApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Turtle Gallery")
+        self.title("Turtle Gallery v1.0")
         self.geometry("1000x700")
         self.minsize(700, 500)
         self.tiles = {}
