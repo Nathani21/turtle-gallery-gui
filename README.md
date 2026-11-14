@@ -4,6 +4,8 @@
 
 A small Python desktop app that shows a gallery of turtle graphics creations. Pick a tile on the left and its creation draws itself on the canvas.
 
+![Turtle Gallery screenshot](screenshot.png)
+
 ## Features
 
 - One tile per creation, each with its own drawing
