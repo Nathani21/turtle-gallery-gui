@@ -3,6 +3,8 @@ import turtle
 
 from creations import CREATIONS
 
+FIT_MARGIN = 1.05  # leave a little empty space around each drawing
+
 
 class GalleryApp(tk.Tk):
     def __init__(self):
@@ -32,21 +34,38 @@ class GalleryApp(tk.Tk):
             self.tiles[name] = tile
 
     def _build_canvas(self):
-        canvas = turtle.ScrolledCanvas(
+        self.canvas = turtle.ScrolledCanvas(
             self, width=800, height=700, canvwidth=1000, canvheight=1000
         )
-        canvas.pack(side="right", fill="both", expand=True)
-        self.screen = turtle.TurtleScreen(canvas)
+        self.canvas.pack(side="right", fill="both", expand=True)
+        self.screen = turtle.TurtleScreen(self.canvas)
         self.screen.tracer(0)
 
+    def _fit_view(self, extent):
+        """Zoom so a square of half-width `extent` fits the visible canvas."""
+        self.update_idletasks()
+        width = self.canvas.winfo_width()
+        height = self.canvas.winfo_height()
+        self.screen.screensize(width, height)
+        half = extent * FIT_MARGIN
+        short = min(width, height)
+        self.screen.setworldcoordinates(
+            -half * width / short,
+            -half * height / short,
+            half * width / short,
+            half * height / short,
+        )
+
     def show(self, name):
+        creation = CREATIONS[name]
         for tile_name, tile in self.tiles.items():
             tile.config(relief="sunken" if tile_name == name else "raised")
         self.screen.clear()
         self.screen.tracer(0)
+        self._fit_view(creation.EXTENT)
         pen = turtle.RawTurtle(self.screen)
         pen.hideturtle()
-        CREATIONS[name](pen)
+        creation.draw(pen)
         self.screen.update()
 
 

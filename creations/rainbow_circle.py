@@ -1,6 +1,7 @@
 import colorsys
 
 COLORS = [colorsys.hsv_to_rgb(i / 36, 1, 1) for i in range(36)]
+EXTENT = 210  # the drawing stays within this distance of the centre
 
 
 def draw(t):

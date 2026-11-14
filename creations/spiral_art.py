@@ -1,4 +1,5 @@
 COLORS = ["red", "yellow", "blue", "green", "purple", "orange"]
+EXTENT = 400  # the drawing stays within this distance of the centre
 
 
 def draw(t):
