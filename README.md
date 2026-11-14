@@ -30,7 +30,7 @@ cd turtle-gallery-gui
 python turtle_gallery.py
 ```
 
-Each creation also runs on its own, for example `python creations/spiral_art.py`.
+Each creation also runs on its own, for example `python creations/chromatic_spiral.py`.
 
 ## How it works
 
@@ -40,7 +40,7 @@ Each creation also runs on its own, for example `python creations/spiral_art.py`
 
 ## Adding a creation
 
-1. Copy `creations/spiral_art.py` to a new file and change the drawing, `EXTENT` and `STEP_MS`.
+1. Copy `creations/chromatic_spiral.py` to a new file and change the drawing, `EXTENT` and `STEP_MS`.
 2. Import it in `creations/__init__.py` and add one line to `CREATIONS`.
 3. Run the tests. They check every registered creation automatically: it must run to completion and stay within its `EXTENT`.
 

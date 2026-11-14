@@ -1,6 +1,6 @@
-from . import rainbow_circle, spiral_art
+from . import chromatic_spiral, spectrum_rosette
 
 CREATIONS = {
-    "Chromatic Spiral": spiral_art,
-    "Spectrum Rosette": rainbow_circle,
+    "Chromatic Spiral": chromatic_spiral,
+    "Spectrum Rosette": spectrum_rosette,
 }
