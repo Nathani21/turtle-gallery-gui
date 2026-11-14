@@ -1,3 +1,5 @@
+import os
+import sys
 import tkinter as tk
 import turtle
 
@@ -6,18 +8,31 @@ from creations import CREATIONS
 FIT_MARGIN = 1.05  # leave a little empty space around each drawing
 
 
+def resource_path(relative_path):
+    """Find a bundled file, both from source and inside the PyInstaller exe."""
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, relative_path)
+
+
 class GalleryApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Turtle Gallery v1.0")
         self.geometry("1000x700")
         self.minsize(700, 500)
+        self._set_icon()
         self.tiles = {}
         self._steps = None
         self._step_ms = 0
         self._job = None
         self._build_tiles()
         self._build_canvas()
+
+    def _set_icon(self):
+        try:
+            self.iconbitmap(resource_path(os.path.join("assets", "icon.ico")))
+        except tk.TclError:
+            pass  # no icon file, or a platform that cannot use .ico
 
     def _build_tiles(self):
         panel = tk.Frame(self, padx=8, pady=8)
