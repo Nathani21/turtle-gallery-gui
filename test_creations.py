@@ -3,7 +3,7 @@ import turtle
 
 import pytest
 
-from creations import CREATIONS, rainbow_circle
+from creations import CREATIONS, spectrum_rosette
 
 
 @pytest.fixture(scope="module")
@@ -43,9 +43,9 @@ def test_registry_entries_are_valid():
         assert creation.STEP_MS > 0
 
 
-def test_rainbow_colors_are_valid():
-    assert len(rainbow_circle.COLORS) == 36
-    for color in rainbow_circle.COLORS:
+def test_rosette_colors_are_valid():
+    assert len(spectrum_rosette.COLORS) == 36
+    for color in spectrum_rosette.COLORS:
         assert len(color) == 3
         assert all(0 <= channel <= 1 for channel in color)
 
