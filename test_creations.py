@@ -37,7 +37,7 @@ def test_registry_entries_are_named_and_callable():
 
 
 def test_rainbow_colors_are_valid():
-    assert len(rainbow_circle.COLORS) == 36
+    assert len(rainbow_circle.COLORS) == 37
     for color in rainbow_circle.COLORS:
         assert len(color) == 3
         assert all(0 <= channel <= 1 for channel in color)
