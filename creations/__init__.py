@@ -4,6 +4,7 @@ from . import (
     spectrum_rosette,
     spectrum_snowflake,
     spectrum_spirograph,
+    spectrum_starburst,
     spectrum_tree,
     spectrum_triangle,
 )
@@ -16,4 +17,5 @@ CREATIONS = {
     "Spectrum Triangle": spectrum_triangle,
     "Spectrum Flower": spectrum_flower,
     "Spectrum Spirograph": spectrum_spirograph,
+    "Spectrum Starburst": spectrum_starburst,
 }
