@@ -17,7 +17,7 @@ def resource_path(relative_path):
 class GalleryApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Turtle Gallery v1.0")
+        self.title("Turtle Gallery v1.1")
         self.geometry("1000x700")
         self.minsize(700, 500)
         self._set_icon()
