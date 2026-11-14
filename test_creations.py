@@ -30,10 +30,11 @@ def test_registry_is_not_empty():
     assert len(CREATIONS) > 0
 
 
-def test_registry_entries_are_named_and_callable():
-    for name, draw in CREATIONS.items():
+def test_registry_entries_are_valid():
+    for name, creation in CREATIONS.items():
         assert isinstance(name, str) and name.strip()
-        assert callable(draw)
+        assert callable(creation.draw)
+        assert creation.EXTENT > 0
 
 
 def test_rainbow_colors_are_valid():
@@ -45,4 +46,13 @@ def test_rainbow_colors_are_valid():
 
 @pytest.mark.parametrize("name", list(CREATIONS))
 def test_creation_runs_to_completion(pen, name):
-    CREATIONS[name](pen)
+    CREATIONS[name].draw(pen)
+
+
+@pytest.mark.parametrize("name", list(CREATIONS))
+def test_creation_stays_within_its_extent(pen, name):
+    creation = CREATIONS[name]
+    creation.draw(pen)
+    pen.getscreen().update()
+    bounds = pen.getscreen().getcanvas().bbox("all")
+    assert max(abs(value) for value in bounds) <= creation.EXTENT
