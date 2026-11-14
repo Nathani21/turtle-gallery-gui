@@ -35,11 +35,28 @@ class GalleryApp(tk.Tk):
             pass  # no icon file, or a platform that cannot use .ico
 
     def _build_tiles(self):
-        panel = tk.Frame(self, padx=8, pady=8)
-        panel.pack(side="left", fill="y")
-        tk.Label(panel, text="Creations", font=("Segoe UI", 12, "bold")).pack(
-            anchor="w", pady=(0, 8)
+        side = tk.Frame(self)
+        side.pack(side="left", fill="y")
+        tk.Label(side, text="Creations", font=("Segoe UI", 12, "bold")).pack(
+            anchor="w", padx=8, pady=8
         )
+        holder = tk.Frame(side)
+        holder.pack(fill="both", expand=True)
+        scrollbar = tk.Scrollbar(holder, orient="vertical")
+        scrollbar.pack(side="right", fill="y")
+        area = tk.Canvas(
+            holder,
+            highlightthickness=0,
+            yscrollcommand=scrollbar.set,
+            yscrollincrement=40,
+        )
+        area.pack(side="left", fill="y")
+        scrollbar.config(command=area.yview)
+
+        panel = tk.Frame(area, padx=8, pady=4)
+        area.create_window((0, 0), window=panel, anchor="nw")
+        panel.bind("<Configure>", lambda e: area.config(scrollregion=area.bbox("all")))
+
         for name in CREATIONS:
             tile = tk.Button(
                 panel,
@@ -50,6 +67,17 @@ class GalleryApp(tk.Tk):
             )
             tile.pack(pady=4)
             self.tiles[name] = tile
+
+        panel.update_idletasks()
+        area.config(width=panel.winfo_reqwidth())
+        self.tile_area = area
+        self.bind_all("<MouseWheel>", lambda e: self._scroll_tiles(e, side))
+
+    def _scroll_tiles(self, event, side):
+        """Scroll the tile column with the mouse wheel while the pointer is over it."""
+        under = self.winfo_containing(event.x_root, event.y_root)
+        if under is not None and str(under).startswith(str(side)):
+            self.tile_area.yview_scroll(int(-event.delta / 120), "units")
 
     def _build_canvas(self):
         self.canvas = turtle.ScrolledCanvas(
