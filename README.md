@@ -22,6 +22,7 @@ A small Python desktop app that shows a gallery of turtle graphics creations. Pi
 | Spectrum Tree | A recursive fractal tree whose branches shift through the colour wheel, from trunk to tips |
 | Spectrum Snowflake | A Koch snowflake, four levels deep, with its outline shifting through the colour wheel |
 | Spectrum Triangle | A filled Sierpinski triangle, five levels deep, coloured across the colour wheel |
+| Spectrum Flower | A twelve-petal flower with a gold centre, each petal a different colour from the wheel |
 
 ## Download
 
