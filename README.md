@@ -24,6 +24,7 @@ A small Python desktop app that shows a gallery of turtle graphics creations. Pi
 | Spectrum Triangle | A filled Sierpinski triangle, five levels deep, coloured across the colour wheel |
 | Spectrum Flower | A twelve-petal flower with a gold centre, each petal a different colour from the wheel |
 | Spectrum Spirograph | A twelve-lobed spirograph curve traced in five turns, with one full trip around the colour wheel |
+| Spectrum Starburst | 36 rays fanning out from the centre, one for each step around the colour wheel |
 
 ## Download
 
