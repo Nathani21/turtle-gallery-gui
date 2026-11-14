@@ -20,7 +20,11 @@ A small Python desktop app that shows a gallery of turtle graphics creations. Pi
 | Chromatic Spiral | 200 overlapping circles in six colours, each turned 59 degrees from the last |
 | Spectrum Rosette | 36 circles that step through the colour wheel, each turned 10 degrees |
 
-## Run it
+## Download
+
+On Windows, download `turtle-gallery.exe` from the [latest release](https://github.com/Nathani21/turtle-gallery-gui/releases/latest) and double-click it. Windows SmartScreen may warn because the file isn't code-signed: click "More info", then "Run anyway".
+
+## Run it from source
 
 You need Python 3 with Tkinter (included in the Windows installer from python.org). Developed and tested on Python 3.13 on Windows.
 
